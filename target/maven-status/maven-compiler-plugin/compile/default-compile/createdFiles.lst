@@ -1,0 +1,8 @@
+com\andytech\sorting\algorithms\configs\SpringFoxConfig.class
+com\andytech\sorting\algorithms\SortingAlgorithmsApplication.class
+com\andytech\sorting\algorithms\controllers\GraphicSortingController.class
+com\andytech\sorting\algorithms\pojos\inputs\ArrayString.class
+com\andytech\sorting\algorithms\services\SortingService.class
+com\andytech\sorting\algorithms\services\impl\SortingServiceImpl.class
+com\andytech\sorting\algorithms\pojos\response\SortingResponse.class
+com\andytech\sorting\algorithms\controllers\SortingAlgorithmController.class
