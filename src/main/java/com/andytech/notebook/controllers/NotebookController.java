@@ -1,6 +1,9 @@
 package com.andytech.notebook.controllers;
 
 
+import com.andytech.notebook.pojos.inputs.EncryptionRequest;
+import com.andytech.notebook.pojos.response.DecryptedResponse;
+import com.andytech.notebook.pojos.response.EncryptionResponse;
 import com.andytech.notebook.services.NotebookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +22,7 @@ public class NotebookController {
 
     Logger logger = LoggerFactory.getLogger(NotebookController.class);
 
-    //Sorting Service
+    //Encryption Service
     @Autowired
     private NotebookService notebookService;
 
@@ -29,18 +32,17 @@ public class NotebookController {
     {
         return new ResponseEntity<>("Hello World", HttpStatus.OK);
     }
-//    /**
-//     * This method is used to handle the request for the selection sort algorithm.
-//     *
-//     * @param listToSort The list of integers to sort
-//     * @param order The order to sort the list in (asc or desc)
-//     * @param steps Whether to return the steps of the algorithm.
-//     * @return The response of the sorting algorithm
-//     */
-//    @PostMapping("/sorting/selection")
-//    public ResponseEntity<SortingResponse<Integer>> selectionSort(@RequestBody ArrayList<Integer>listToSort, @RequestParam(name="order",required = false,defaultValue = "asc") String order, @RequestParam(name="steps",defaultValue ="false")boolean steps)
-//    {
-//        logger.info("Input values: "+ listToSort.toString());
-//        return new ResponseEntity<>(sortingService.selectionSort(listToSort,order,steps), HttpStatus.OK);
-//    }
+
+    @PostMapping("notebook/encrypt")
+    public ResponseEntity<EncryptionResponse> encrypt(@RequestBody EncryptionRequest encryptionRequest)
+    {
+        return new ResponseEntity<>(notebookService.encrypt(encryptionRequest), HttpStatus.OK);
+    }
+
+    @PostMapping("notebook/decrypt")
+    public ResponseEntity<DecryptedResponse> decrypt(@RequestBody EncryptionRequest encryptionRequest)
+    {
+        return new ResponseEntity<>(notebookService.decrypt(encryptionRequest), HttpStatus.OK);
+    }
+
 }
