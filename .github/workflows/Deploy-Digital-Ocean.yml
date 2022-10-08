@@ -58,4 +58,4 @@ jobs:
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:latest
             docker rm -f terminal-commands
-            docker run -d --restart always --name terminal-commands -p 8081:8081 ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:latest
+            docker run -d --restart always --name encrypted-notebook -p 8081:8081 ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:latest
