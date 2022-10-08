@@ -40,7 +40,7 @@ jobs:
         with:
           context: .
           push: ${{ GitHub.event_name != 'pull_request' }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/Encrypted-Notebook:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:${{ github.sha }}
       - name: Connect
         uses: appleboy/ssh-action@master
         env:
@@ -56,6 +56,6 @@ jobs:
           debug: true
           script: |
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/Encrypted-Notebook:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:${{ github.sha }}
             docker rm -f terminal-commands
-            docker run -d --restart always --name terminal-commands -p 8081:8081 ${{ secrets.DOCKER_HUB_USERNAME }}/Encrypted-Notebook:${{ github.sha }}
+            docker run -d --restart always --name terminal-commands -p 8081:8081 ${{ secrets.DOCKER_HUB_USERNAME }}/encrypted-notebook:${{ github.sha }}
